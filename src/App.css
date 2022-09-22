@@ -6,6 +6,29 @@
   padding-top: 100px;
 }
 
-.chartjs-tooltip {
-  background-color: red !important;
+.stock__title {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  border-bottom: 0.3px solid rgba(0, 0, 0, 0.3);
+  padding-bottom: 7px;
+  margin: 0px 10px 30px 10px;
+}
+
+.stock__period {
+  margin: 0px 10px 25px 10px;
+}
+.stock__period > button {
+  margin-right: 15px;
+  padding: 0px;
+
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+.stock__period > button.active {
+  padding-bottom: 7px;
+
+  border-bottom: 3px solid #1a73e8;
+  color: #1a73e8;
 }

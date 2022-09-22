@@ -27,7 +27,7 @@ ChartJS.register(
   Legend,
   {
     id: '1',
-    afterDraw: function (chart, easing) {
+    afterDraw: function (chart) {
       if (chart.tooltip._active && chart.tooltip._active.length) {
         const activePoint = chart.tooltip._active[0];
         const ctx = chart.ctx;
@@ -137,15 +137,6 @@ const PERIOD = {
   monthly : 'm'
 }
 
-const getByDay = {
-  '5D': {
-    from: dayjs().startOf('w').format('YYYY-MM-DD'),
-    to: dayjs().endOf('w').format('YYYY-MM-DD')
-  },
-
-}
-
-
 function App() {
   const [period, setPeriod] = useState(PERIOD.daily);
   const [stockData, setStockData] = useState(null);
@@ -169,8 +160,7 @@ function App() {
   });
 
   const bgGradient = (ctx, chartArea, scales) => {
-    const { left, right, top, bottom, width, height } = chartArea;
-    const { x, y } = scales;
+    const { top, bottom } = chartArea;
     const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
     gradientBg.addColorStop(0, 'rgba(53, 168 , 83, 0.3)');
     gradientBg.addColorStop(1, 'rgba(53, 168 , 83, 0)');
@@ -220,6 +210,12 @@ function App() {
   
   return (
     <div className="App">
+      <h1 className='stock__title'>McDonald's Corp</h1> 
+      <div className='stock__period'>
+        <button className={period === PERIOD.daily ? 'active' : ''} onClick={() => setPeriod(PERIOD.daily)}>daily</button>
+        <button className={period === PERIOD.weekly ? 'active' : ''} onClick={() => setPeriod(PERIOD.weekly)}>weekly</button>
+        <button className={period === PERIOD.monthly ? 'active' : ''} onClick={() => setPeriod(PERIOD.monthly)}>monthly</button>
+      </div>
       <Line options={options} data={dataChart()} />
     </div>
   );
